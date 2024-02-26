@@ -76,7 +76,11 @@
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [ 
     git 
+    kitty
+    krita
+    neofetch
     neovim
+    virtualbox
 
     # Programming language dependencies
     cargo
