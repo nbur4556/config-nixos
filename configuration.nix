@@ -85,6 +85,8 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [ 
+    bitwarden
+    bitwarden-cli
     git 
     kitty
     krita
