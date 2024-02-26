@@ -74,7 +74,19 @@
   };
 
   # List packages installed in system profile. To search, run:
-  environment.systemPackages = with pkgs; [ git neovim ];
+  environment.systemPackages = with pkgs; [ 
+    git 
+    neovim
+
+    # Programming language dependencies
+    cargo
+    gcc
+    nodejs_21
+  ];
+
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
