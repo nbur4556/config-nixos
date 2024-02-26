@@ -62,6 +62,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  # TODO: Fix username "nbur4556"
   users.users.nickb = {
     isNormalUser = true;
     description = "Nick Burt";
@@ -91,6 +92,8 @@
     kitty
     krita
     neofetch
+    # FIX: neovim autocomplete not working. Is this due to language source not where expected in neovim?
+    # FIX: MASON will not work with NixOs. Either need to replace Mason OR replace NixOs (try out lsp0?) (https://www.reddit.com/r/NixOS/comments/13uc87h/masonnvim_broke_on_nixos/?rdt=56912)
     neovim
     obsidian
     virtualbox
