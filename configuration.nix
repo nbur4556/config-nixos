@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -73,6 +73,16 @@
     ];
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "obsidian"
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    # Required as dependency to Obsidian
+    # FIX: Is there a better way to install Obsidian without using eol packages?
+    "electron-25.9.0"
+  ];
+
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [ 
     git 
@@ -80,6 +90,7 @@
     krita
     neofetch
     neovim
+    obsidian
     virtualbox
 
     # Programming language dependencies
