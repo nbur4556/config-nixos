@@ -49,8 +49,6 @@
     variant = "";
   };
 
-  # Greetd Display Manager
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nbur4556 = {
     isNormalUser = true;
@@ -62,14 +60,29 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+# Display Manager
+services.greetd = {
+  enable = true;
+  settings = {
+    default_session = {
+      command = "$pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+    };
+    initial_session = {
+      command = "Hyprland";
+      user = "nbur4556";
+    };
+  };
+};
+
   # System Packages
   environment.systemPackages = with pkgs; [
     sway
     vim
     git
     tmux
-    hyprland
+
     kitty
+
     neovim
     ripgrep
     fzf
