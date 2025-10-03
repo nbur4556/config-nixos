@@ -49,19 +49,6 @@
     variant = "";
   };
 
-  # Greetd Display Manager
-  #FIX: current session creates a black screen
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = "nbur4556";
-      };
-      default_session = initial_session;
-    };
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nbur4556 = {
     isNormalUser = true;
@@ -73,19 +60,38 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+# Display Manager
+services.greetd = {
+  enable = true;
+  settings = {
+    default_session = {
+      command = "$pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+    };
+    initial_session = {
+      command = "Hyprland";
+      user = "nbur4556";
+    };
+  };
+};
+
   # System Packages
   environment.systemPackages = with pkgs; [
     sway
     vim
     git
     tmux
-    hyprland
+
     kitty
+
     neovim
     ripgrep
     fzf
     gcc
   ];
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # Directs Electron based applications to use Wayland
+  };
 
   programs.hyprland.enable = true;
 
