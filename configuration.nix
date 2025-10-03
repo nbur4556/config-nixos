@@ -81,6 +81,10 @@
     tmux
     hyprland
     kitty
+    neovim
+    ripgrep
+    fzf
+    gcc
   ];
 
   programs.hyprland.enable = true;
