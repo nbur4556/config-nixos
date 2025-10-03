@@ -50,17 +50,6 @@
   };
 
   # Greetd Display Manager
-  #FIX: current session creates a black screen
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = "nbur4556";
-      };
-      default_session = initial_session;
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nbur4556 = {
@@ -86,6 +75,10 @@
     fzf
     gcc
   ];
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # Directs Electron based applications to use Wayland
+  };
 
   programs.hyprland.enable = true;
 
