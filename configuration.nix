@@ -67,6 +67,7 @@
     git
     tmux
     hyprland
+    kitty
   ];
 
   programs.hyprland.enable = true;
