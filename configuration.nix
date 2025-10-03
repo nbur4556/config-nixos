@@ -49,6 +49,19 @@
     variant = "";
   };
 
+  # Greetd Display Manager
+  #FIX: current session creates a black screen
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "nbur4556";
+      };
+      default_session = initial_session;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nbur4556 = {
     isNormalUser = true;
@@ -60,10 +73,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # System Packages
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    sway
+    vim
     git
     tmux
     hyprland
